@@ -16,7 +16,15 @@ pipeline {
                 }
             }
         }
-
+        stage('Cleanup Containers') {
+    steps {
+        script {
+            sh """
+            docker rm -f $(docker ps -aq) || true
+            """
+        }
+    }
+}
         stage('Deploy Part 1') {
             steps {
                 script {
