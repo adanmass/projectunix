@@ -3,7 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
     ports:
       - "85:80"
     depends_on:
