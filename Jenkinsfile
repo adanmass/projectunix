@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh'''
                 ls -l
-                rm -rf unix_project || true
+                rm -rf unixproject || true
                 git clone https://github.com/adanmass/projectunix.git
                 '''
             }
