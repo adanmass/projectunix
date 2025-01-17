@@ -16,22 +16,37 @@ pipeline {
                 }
             }
         }
-        stage('Cleanup Containers') {
-    steps {
-        script {
-            sh """
-            docker rm -f $(docker ps -aq) || true
-            """
+
+        stage('Prepare Directories') {
+            steps {
+                script {
+                    // Make sure we have permissions to write to the required directories
+                    sh """
+                    mkdir -p /tmp/unixproject_db
+                    chmod 777 /tmp/unixproject_db
+                    """
+                }
+            }
         }
-    }
-}
+
+        stage('Cleanup Containers') {
+            steps {
+                script {
+                    // Forcefully stop and remove all containers
+                    sh """
+                    docker rm -f $(docker ps -aq) || true
+                    """
+                }
+            }
+        }
+
         stage('Deploy Part 1') {
             steps {
                 script {
                     sh """
                     cd ${PROJECT_DIR}
                     docker ps -a
-                    docker compose down -v
+                    docker compose down -v || true
                     """
                 }
             }
