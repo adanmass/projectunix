@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   web:
     build:
@@ -17,7 +15,7 @@ services:
     restart: always
     volumes:
       - mysql:/var/lib/mysql
-      - ./projectunix/daat_base:/docker-entrypoint-initdb.d
+      - ./daat_base:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: "123"
 
