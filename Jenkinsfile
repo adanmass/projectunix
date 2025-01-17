@@ -14,7 +14,7 @@ pipeline {
         stage('Deploy part 1') {
             steps {
                 sh '''
-                   cd unixproject
+                   cd /home/ishtaya/Desktop/unixproject
                    docker ps -a
                    pwd
                    docker compose down -v
@@ -25,7 +25,7 @@ pipeline {
         stage('Deploy part 2') {
             steps {
                 sh '''
-                   cd unixproject
+                   cd /home/ishtaya/Desktop/unixproject
                    docker compose up -d
                 '''
             }
