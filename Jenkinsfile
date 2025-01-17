@@ -14,7 +14,7 @@ pipeline {
         stage('compose down') {
             steps {
                 sh '''
-                   cd unixproject
+                   cd projectunix
                    docker ps -a
                    pwd
                    docker compose down -v
