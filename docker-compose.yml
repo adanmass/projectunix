@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./tmp/project_php:/var/www/html
+      - ./project_php:/var/www/html
     ports:
       - "85:80"
     depends_on:
@@ -15,8 +15,9 @@ services:
     restart: always
     volumes:
       - mysql:/var/lib/mysql
-      - ./tmp/daat_base:/docker-entrypoint-initdb.d
+      - ./daat_base:/docker-entrypoint-initdb.d
     environment:
+      MYSQL_DATABASE: dictionary
       MYSQL_ROOT_PASSWORD: "123"
 
 volumes:
