@@ -11,7 +11,6 @@ pipeline {
                     // Clean up previous builds
                     sh """
                     docker context ls 
-                    docker context use default
                     rm -rf ${PROJECT_DIR} || true
                     git clone ${REPO_URL} ${PROJECT_DIR}
                     """
