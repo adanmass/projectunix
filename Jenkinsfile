@@ -10,6 +10,8 @@ pipeline {
                 script {
                     // Clean up previous builds
                     sh """
+                    docker context create desktop-linux --description "Docker Desktop" --docker "host=unix:///home/ishtaya/.docker/desktop/docker.sock"
+                    docker context use desktop-linux
                      docker context ls 
                     rm -rf ${PROJECT_DIR} || true
                     git clone ${REPO_URL} ${PROJECT_DIR}
