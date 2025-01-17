@@ -23,7 +23,7 @@ pipeline {
                     sh """
                     cd ${PROJECT_DIR}
                     docker ps -a
-                    docker compose down -v || true
+                    docker compose down --volumes --remove-orphans --rmi all || true
                     """
                 }
             }
