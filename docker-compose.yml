@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./php:/var/www/html
+      - /home/ishtaya/docker_volumes/php:/var/www/html
     ports:
       - "85:80"
     depends_on:
@@ -14,10 +14,10 @@ services:
     image: mysql
     restart: always
     volumes:
-      - mysql:/var/lib/mysql
-      - "/tmp/unixproject_db:/docker-entrypoint-initdb.d"
+      - /home/ishtaya/docker_volumes/mysql:/var/lib/mysql
+      - /home/ishtaya/docker_volumes/db:/docker-entrypoint-initdb.d
     environment:
-      MYSQL_ROOT_PASSWORD: 123 
+      MYSQL_ROOT_PASSWORD: 123
 
   phpmyadmin:
     image: phpmyadmin
