@@ -1,42 +1,33 @@
 pipeline {
     agent any
-    environment {
-        REPO_URL = 'https://github.com/adanmass/projectunix.git'
-        PROJECT_DIR = "${env.WORKSPACE}/unixproject"
-    }
     stages {
-        stage('Pull Code') {
+        stage('git clone') {
             steps {
-                script {
-                    // Clean up previous builds
-                    sh """
-                    rm -rf ${PROJECT_DIR} || true
-                    git clone ${REPO_URL} ${PROJECT_DIR}
-                    """
-                }
+                sh'''
+                ls -l
+                rm -rf unix_project || true
+                git clone https://github.com/adanmass/projectunix.git
+                '''
             }
         }
-
-        stage('Deploy Part 1') {
+        
+        stage('compose down') {
             steps {
-                script {
-                    sh """
-                    cd ${PROJECT_DIR}
-                    docker ps -a
-                    docker compose down --volumes --remove-orphans --rmi all || true
-                    """
-                }
+                sh '''
+                   cd unix_project
+                   docker ps -a
+                   pwd
+                   docker compose down -v
+                '''
             }
         }
-
-        stage('Deploy Part 2') {
+        
+        stage('compose up') {
             steps {
-                script {
-                    sh """
-                    cd ${PROJECT_DIR}
-                    docker compose up -d
-                    """
-                }
+                sh '''
+                   cd unix_project
+                   docker compose up -d
+                '''
             }
         }
     }
