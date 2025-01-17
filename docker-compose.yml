@@ -9,6 +9,9 @@ services:
       - "85:80"
     depends_on:
       - db
+    restart: always
+    environment:
+      - SOME_ENV_VARIABLE=some_value  # Example of environment variables for the web service
 
   db:
     image: mysql
@@ -18,7 +21,8 @@ services:
       - /home/ishtaya/docker_volumes/db:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: 123
-      phpmyadmin:
+
+  phpmyadmin:
     image: phpmyadmin
     restart: always
     ports:
