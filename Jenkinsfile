@@ -20,7 +20,9 @@ pipeline {
                 script {
                     sh """
                         docker ps -a
-                        docker compose down -v
+                        docker kill $(docker ps -q) || true
+                        docker rm $(docker ps -a -q) || true
+                        docker compose down -v || true
                     """
                 }
             }
