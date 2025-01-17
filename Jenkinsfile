@@ -57,7 +57,7 @@ pipeline {
                 script {
                     sh """
                     cd ${PROJECT_DIR}
-                    sudo docker compose up -v
+                       echo '0812' | sudo -S docker compose up -d
                     """
                 }
             }
