@@ -5,17 +5,19 @@ pipeline {
         PROJECT_DIR = "${env.WORKSPACE}/unixproject"
     }
     stages {
-        stage('Prepare Docker Permissions') {
-            steps {
-                script {
-                    sh """
-                    # Add jenkins user to docker group if not already added
-                    sudo usermod -aG docker jenkins
-                    # Restart Jenkins service to apply changes (optional, depending on your setup)
-                    sudo systemctl restart jenkins || true
-                    """
-                }
-            }
+       stage('Prepare Docker Permissions') {
+    steps {
+        script {
+            sh """
+            # Add jenkins user to docker group if not already added
+            sudo usermod -aG docker jenkins
+            # Restart Jenkins service to apply changes (optional, depending on your setup)
+            sudo systemctl restart jenkins || true
+            """
+        }
+    }
+}
+
         }
 
         stage('Pull Code') {
