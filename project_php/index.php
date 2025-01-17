@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 $definition = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $word = $_POST['Word'];
+    $word = $_POST['word'];
 
     $sql = "SELECT Definition FROM Words WHERE Word = ?";
     $stmt = $conn->prepare($sql);
