@@ -20,7 +20,7 @@ pipeline {
         stage('Prepare Directories') {
             steps {
                 script {
-                    // Make sure we have permissions to write to the required directories
+                    // Ensure required directories exist and have correct permissions
                     sh """
                     mkdir -p /tmp/unixproject_db
                     chmod 777 /tmp/unixproject_db
@@ -34,7 +34,7 @@ pipeline {
                 script {
                     // Forcefully stop and remove all containers
                     sh """
-                    docker rm -f $(docker ps -aq) || true
+                    docker rm -f \$(docker ps -aq) || true
                     """
                 }
             }
