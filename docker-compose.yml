@@ -15,7 +15,7 @@ services:
     restart: always
     volumes:
       - mysql:/var/lib/mysql
-      - /var/lib/jenkins/workspace/unixjob/projectunix/daat_base:/docker-entrypoint-initdb.d
+      - ./daat_base:/docker-entrypoint-initdb.d:cached
     environment:
       MYSQL_DATABASE: dictionary
       MYSQL_ROOT_PASSWORD: 123
