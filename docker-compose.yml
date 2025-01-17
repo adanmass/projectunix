@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+       volumes:
+      - ./index.php:/var/www/html/index.php
     ports:
       - "85:80"
     depends_on:
@@ -12,8 +14,10 @@ services:
     image: mysql
     restart: always
     volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
       - mysql:/var/lib/mysql
     environment:
+      MYSQL_DATABASE: dictionary
       MYSQL_ROOT_PASSWORD: 123
       
 
