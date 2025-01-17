@@ -19,16 +19,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123
 
-  phpmyadmin:
-    image: phpmyadmin
-    restart: always
-    ports:
-      - 8085:80
-    depends_on:
-      - db
-    environment:
-      - PMA_ARBITRARY=1
-
 volumes:
   mysql:
 
