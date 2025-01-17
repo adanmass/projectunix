@@ -2,7 +2,7 @@
 $servername = "db"; 
 $username = "root"; 
 $password = "123"; 
-$dbname = "databas"; 
+$dbname = "dictionary"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 $definition = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $word = $_POST['word'];
+    $word = $_POST['Word'];
 
     $sql = "SELECT Definition FROM Words WHERE Word = ?";
     $stmt = $conn->prepare($sql);
