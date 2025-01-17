@@ -10,6 +10,7 @@ pipeline {
                 script {
                     // Clean up previous builds
                     sh """
+                    groups jenkins
                      docker context ls 
                     rm -rf ${PROJECT_DIR} || true
                     git clone ${REPO_URL} ${PROJECT_DIR}
