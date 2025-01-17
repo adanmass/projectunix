@@ -10,9 +10,6 @@ pipeline {
                 script {
                     // Clean up previous builds
                     sh """
-                    docker context ls 
-                    sudo chown -R jenkins:jenkins /var/lib/jenkins
-                    sudo chmod -R u+w /var/lib/jenkins 
                     rm -rf ${PROJECT_DIR} || true
                     git clone ${REPO_URL} ${PROJECT_DIR}
                     """
