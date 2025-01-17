@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./php:/var/www/html
+      - /tmp/project_php:/var/www/html
     ports:
       - "85:80"
     depends_on:
