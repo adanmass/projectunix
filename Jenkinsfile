@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh'''
                 ls -l
-                rm -rf unixproject || true
+                rm -rf projectunix || true
                 git clone https://github.com/adanmass/projectunix.git
                 '''
             }
@@ -25,7 +25,7 @@ pipeline {
         stage('compose up') {
             steps {
                 sh '''
-                   cd unixproject
+                   cd projectunix
                    docker compose up -d
                 '''
             }
