@@ -8,40 +8,56 @@ pipeline {
         stage('Pull Code') {
             steps {
                 script {
+                    // Clean up previous builds
                     sh """
-                        rm -rf ${PROJECT_DIR} || true
-                        git clone ${REPO_URL} ${PROJECT_DIR}
+                    rm -rf ${PROJECT_DIR} || true
+                    git clone ${REPO_URL} ${PROJECT_DIR}
                     """
                 }
             }
         }
+
+        stage('Prepare Directories') {
+            steps {
+                script {
+                    // Ensure required directories exist and have correct permissions
+                    sh """
+                    mkdir -p /tmp/unixproject_db
+                    chmod 777 /tmp/unixproject_db
+                    """
+                }
+            }
+        }
+
         stage('Cleanup Containers') {
             steps {
                 script {
+                    // Forcefully stop and remove all containers
                     sh """
-                        docker ps -a
-                        docker kill $(docker ps -q) || true
-                        docker rm $(docker ps -a -q) || true
-                        docker container prune -f || true
-                        docker rm unixproject-phpmyadmin-1 || true
+                    docker rm -f \$(docker ps -aq) || true
                     """
                 }
             }
         }
+
         stage('Deploy Part 1') {
             steps {
                 script {
                     sh """
-                        docker compose down -v || true
+                    cd ${PROJECT_DIR}
+                    docker ps -a
+                    docker compose down -v || true
                     """
                 }
             }
         }
+
         stage('Deploy Part 2') {
             steps {
                 script {
                     sh """
-                        docker compose up -d
+                    cd ${PROJECT_DIR}
+                    docker compose up -d
                     """
                 }
             }
