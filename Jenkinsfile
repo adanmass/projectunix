@@ -4,7 +4,7 @@ pipeline {
         stage('git clone') {
             steps {
                 sh'''
-                ls -l
+                docker context ls
                 rm -rf projectunix || true
                 git clone https://github.com/adanmass/projectunix.git
                 '''
