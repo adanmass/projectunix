@@ -15,8 +15,6 @@ pipeline {
             steps {
                 sh '''
                    cd projectunix
-                   docker ps -a
-                   pwd
                    docker compose down -v
                 '''
             }
