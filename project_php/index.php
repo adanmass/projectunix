@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 $definition = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $word = $_POST['word']; // Fix: Use 'word' instead of 'Word'
+    $word = $_POST['word']; 
 
     echo "Searching for word: " . htmlspecialchars($word) . "<br>";
 
